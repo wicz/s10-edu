@@ -1,0 +1,13 @@
+#!/usr/bin/env ruby
+
+require_relative '../lib/rps'
+
+game = Rps::Game.new
+loop do
+  begin
+    print "Your turn. Choose one from [r, p, s]: "
+    puts game.turn gets.strip.to_sym
+  rescue Rps::Game::InvalidHand
+    retry
+  end
+end
