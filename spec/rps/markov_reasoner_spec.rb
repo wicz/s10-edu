@@ -57,6 +57,7 @@ describe Rps::MarkovReasoner do
         s: { r: 1, p: 0, s: 0 }
       }
     end
+
     it "estimates rock if current is scissors" do
       reasoner.events = [:s]
       reasoner.estimate_next_events.should eq([:r])

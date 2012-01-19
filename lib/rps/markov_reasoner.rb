@@ -26,7 +26,7 @@ module Rps
       @events.last || @states.sample
     end
 
-    def add_event event
+    def add_event(event)
       check_event event
       @matrix[last_event][event] += 1
       @events << event
@@ -38,7 +38,7 @@ module Rps
       possibilities.keys
     end
 
-    def check_event event
+    def check_event(event)
       raise UnknownEvent unless @states.include? event
     end
   end

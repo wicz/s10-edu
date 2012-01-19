@@ -14,14 +14,14 @@ module Rps
       @reasoner = reasoner
     end
 
-    def turn opponents_hand
+    def turn(opponents_hand)
       check_hand opponents_hand
       result = check_win opponents_hand, my_hand
       process_hand opponents_hand
       format_output result
     end
 
-    def check_hand hand
+    def check_hand(hand)
       raise InvalidHand unless HANDS.include? hand
     end
 
@@ -30,11 +30,11 @@ module Rps
       BEATS.invert[opponent]
     end
 
-    def format_output result
+    def format_output(result)
       result
     end
 
-    def check_win opponent, mine
+    def check_win(opponent, mine)
       turn = "#{NAMES[opponent]} vs #{NAMES[mine]}: "
       turn << case opponent
       when mine then "It's a draw"
@@ -44,7 +44,7 @@ module Rps
       turn
     end
 
-    def process_hand opponent
+    def process_hand(opponent)
       @reasoner.add_event opponent
     end
   end
