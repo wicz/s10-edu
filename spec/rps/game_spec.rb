@@ -26,17 +26,17 @@ describe Rps::Game do
     end
 
     it "plays rock to beat scissors" do
-      game.reasoner.stub(:estimate_next_events => [:s])
+      game.reasoner.stub(estimate_next_events: [:s])
       game.my_hand.should eq(:r)
     end
 
     it "plays paper to beat rock" do
-      game.reasoner.stub(:estimate_next_events => [:r])
+      game.reasoner.stub(estimate_next_events: [:r])
       game.my_hand.should eq(:p)
     end
 
     it "plays scissors to beat paper" do
-      game.reasoner.stub(:estimate_next_events => [:p])
+      game.reasoner.stub(estimate_next_events: [:p])
       game.my_hand.should eq(:s)
     end
   end
