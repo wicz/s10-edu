@@ -1,6 +1,6 @@
 module Rps
   class Game
-    HANDS = %w{ r p s }.map(&:to_sym)
+    HANDS = [:r, :p, :s]
     BEATS = { r: :s, p: :r, s: :p }
     NAMES = { r: "Rock", p: "Paper", s: "Scissors" }
 
