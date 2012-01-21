@@ -8,6 +8,7 @@ loop do
     print "Your turn. Choose one from [r, p, s]: "
     puts game.turn gets.strip.to_sym
   rescue Rps::Game::InvalidHand
+    puts "Invalid hand!"
     retry
   end
 end
