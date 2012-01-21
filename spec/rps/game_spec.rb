@@ -44,39 +44,39 @@ describe Rps::Game do
   describe "#check_win" do
     describe "given we play the same hand" do
       it "is a draw" do
-        game.check_win(:r, :r).should eq("Rock vs Rock: It's a draw")
-        game.check_win(:p, :p).should eq("Paper vs Paper: It's a draw")
-        game.check_win(:s, :s).should eq("Scissors vs Scissors: It's a draw")
+        game.get_winner(:r, :r).should eq(:draw)
+        game.get_winner(:p, :p).should eq(:draw)
+        game.get_winner(:s, :s).should eq(:draw)
       end
     end
 
     describe "given player plays rock" do
-      it "beats scissors" do
-        game.check_win(:r, :s).should eq("Rock vs Scissors: You won!")
+      it "beats my scissors" do
+        game.get_winner(:r, :s).should eq(:you)
       end
 
-      it "loses for paper" do
-        game.check_win(:r, :p).should eq("Rock vs Paper: I won!")
+      it "loses for my paper" do
+        game.get_winner(:r, :p).should eq(:me)
       end
     end
 
     describe "given player plays paper" do
-      it "beats rock" do
-        game.check_win(:p, :r).should eq("Paper vs Rock: You won!")
+      it "beats my rock" do
+        game.get_winner(:p, :r).should eq(:you)
       end
 
-      it "loses for scissors" do
-        game.check_win(:p, :s).should eq("Paper vs Scissors: I won!")
+      it "loses for my scissors" do
+        game.get_winner(:p, :s).should eq(:me)
       end
     end
 
     describe "given player plays scissors" do
-      it "beats paper" do
-        game.check_win(:s, :p).should eq("Scissors vs Paper: You won!")
+      it "beats my paper" do
+        game.get_winner(:s, :p).should eq(:you)
       end
 
-      it "loses for rock" do
-        game.check_win(:s, :r).should eq("Scissors vs Rock: I won!")
+      it "loses for my rock" do
+        game.get_winner(:s, :r).should eq(:me)
       end
     end
   end
@@ -91,9 +91,9 @@ describe Rps::Game do
   describe "#turn" do
     it do
       game.should_receive :check_hand
-      game.should_receive :check_win
-      game.should_receive :process_hand
+      game.should_receive :get_winner
       game.should_receive :format_output
+      game.should_receive :process_hand
       game.turn :r
     end
   end

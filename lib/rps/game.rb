@@ -1,10 +1,10 @@
 module Rps
   class Game
     HANDS = [:r, :p, :s]
-    BEATS = { r: :s, p: :r, s: :p }
+    BEATS = { r: :p, p: :s, s: :r }
     NAMES = { r: "Rock", p: "Paper", s: "Scissors" }
 
-    InvalidHand = Class.new StandardError
+    InvalidHand = Class.new(StandardError)
 
     attr_accessor :reasoner
 
@@ -16,9 +16,9 @@ module Rps
 
     def turn(opponents_hand)
       check_hand opponents_hand
-      result = check_win opponents_hand, my_hand
+      result = get_winner(opponents_hand, my_hand)
       process_hand opponents_hand
-      format_output result
+      format_output(opponents_hand, my_hand, result)
     end
 
     def check_hand(hand)
@@ -27,21 +27,25 @@ module Rps
 
     def my_hand
       opponent = @reasoner.estimate_next_events.sample
-      BEATS.invert[opponent]
+      BEATS[opponent]
     end
 
-    def format_output(result)
-      result
-    end
-
-    def check_win(opponent, mine)
-      turn = "#{NAMES[opponent]} vs #{NAMES[mine]}: "
-      turn << case opponent
-      when mine then "It's a draw"
-      when BEATS[mine] then "I won!"
-      else "You won!"
+    def format_output(opponent_hand, my_hand, result)
+      turn = "#{NAMES[opponent_hand]} vs #{NAMES[my_hand]}: "
+      turn << case result
+      when :draw  then "It's a draw"
+      when :you   then "You won!"
+      else "I won!"
       end
       turn
+    end
+
+    def get_winner(opponent_hand, my_hand)
+      case opponent_hand
+      when my_hand        then :draw
+      when BEATS[my_hand] then :you
+      else :me
+      end
     end
 
     def process_hand(opponent)
