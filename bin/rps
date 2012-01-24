@@ -5,7 +5,7 @@ require_relative '../lib/rps'
 game = Rps::Game.new
 loop do
   begin
-    print "Your turn. Choose one from [r, p, s]: "
+    print "Your turn. Choose one of [r, p, s] or q to quit: "
     puts game.turn gets.strip.to_sym
   rescue Rps::Game::InvalidHand => e
     if e.message == :q

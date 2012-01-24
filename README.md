@@ -1,31 +1,30 @@
-# Academic Exercise: Markov Chains
+# Rock, Paper and Scissors w/ Markov Chains
 
-_written by: Shane Emmons_
+This is an implementation of the game Rock, Paper an Scissors using Markov
+Chains to estimate the opponent's next hand.
 
-For this exercise you'll propose and implement a novel use of a Markov
-Chains. Markov Chains are sequences of items where any item in the
-sequence is dependent only on the item which comes before it. If you're
-not familiar with Markov Chains, please take some time to research them
-yourself. As usual,
-[the Wikipedia article](http://en.wikipedia.org/wiki/Markov_chain) is a
-good start.
+## Usage
 
-You don't have to limit your ideas to creating new sequences via some
-input. You can also use it for prediction or ranking of items in the
-sequence.
-
-## Exercise Summary
-
-- Propose a novel use for a Markov Chain.
-  - No two students should work on the same application of a Markov
-    Chain.
-  - You cannot write a simple text generator.
-  - If you get stuck, don't be afraid to ask for help.
-- Implement your idea.
-
-## Submission Guidelines
-
-If you plan to work on this exercise, you should fork this repository 
-and push code early and often during the course. The course 
-guidelines PDF explains the submission process in detail, but please 
-contact an instructor if you have any questions.
+    $ bin/rps
+    Your turn. Choose one of [r, p, s] or q to quit: p
+    Paper vs Rock: I won!
+    Your turn. Choose one of [r, p, s] or q to quit: p
+    Paper vs Scissors: I won!
+    Your turn. Choose one of [r, p, s] or q to quit: p
+    Paper vs Scissors: I won!
+    Your turn. Choose one of [r, p, s] or q to quit: r
+    Rock vs Scissors: You won!
+    Your turn. Choose one of [r, p, s] or q to quit: s
+    Scissors vs Scissors: It's a draw
+    Your turn. Choose one of [r, p, s] or q to quit: r
+    Rock vs Rock: You won!
+    Your turn. Choose one of [r, p, s] or q to quit: s
+    Scissors vs Paper: It's a draw
+    Your turn. Choose one of [r, p, s] or q to quit: p
+    Paper vs Scissors: It's a draw
+    Your turn. Choose one of [r, p, s] or q to quit: s
+    Scissors vs Paper: It's a draw
+    Your turn. Choose one of [r, p, s] or q to quit: k
+    Invalid hand!
+    Your turn. Choose one of [r, p, s] or q to quit: q
+    My wins/Ties/Your wins: 3 / 4 / 2
