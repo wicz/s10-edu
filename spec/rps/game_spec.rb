@@ -19,25 +19,25 @@ describe Rps::Game do
     end
   end
 
-  describe "#my_hand" do
+  describe "#estimate_my_hand" do
     it "ask the reasoner for the next possible hand" do
       game.reasoner.should_receive(:estimate_next_events).and_return([])
-      game.my_hand
+      game.estimate_my_hand
     end
 
     it "plays rock to beat scissors" do
       game.reasoner.stub(estimate_next_events: [:s])
-      game.my_hand.should eq(:r)
+      game.estimate_my_hand.should eq(:r)
     end
 
     it "plays paper to beat rock" do
       game.reasoner.stub(estimate_next_events: [:r])
-      game.my_hand.should eq(:p)
+      game.estimate_my_hand.should eq(:p)
     end
 
     it "plays scissors to beat paper" do
       game.reasoner.stub(estimate_next_events: [:p])
-      game.my_hand.should eq(:s)
+      game.estimate_my_hand.should eq(:s)
     end
   end
 
@@ -88,10 +88,19 @@ describe Rps::Game do
     end
   end
 
+  describe "#update_stats" do
+    it "sums 1 to the result" do
+      game.update_stats :draw
+      game.stats.values.should eq([0, 0, 1])
+    end
+  end
+
   describe "#turn" do
     it do
       game.should_receive :check_hand
+      game.should_receive :estimate_my_hand
       game.should_receive :get_winner
+      game.should_receive :update_stats
       game.should_receive :format_output
       game.should_receive :process_hand
       game.turn :r

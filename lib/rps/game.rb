@@ -6,7 +6,7 @@ module Rps
 
     InvalidHand = Class.new(StandardError)
 
-    attr_accessor :reasoner
+    attr_accessor :reasoner, :stats
 
     # New Scientist magazine conducted a study in 2007 concluding
     # that rock was most commonly played first
@@ -17,6 +17,7 @@ module Rps
 
     def turn(opponents_hand)
       check_hand opponents_hand
+      my_hand = estimate_my_hand
       result = get_winner(opponents_hand, my_hand)
       update_stats result
       process_hand opponents_hand
@@ -35,7 +36,7 @@ module Rps
       raise InvalidHand.new(hand) unless HANDS.include?(hand)
     end
 
-    def my_hand
+    def estimate_my_hand
       opponent = @reasoner.estimate_next_events.sample
       BEATS[opponent]
     end
