@@ -12,17 +12,27 @@ module Rps
     # that rock was most commonly played first
     def initialize(reasoner = Rps::MarkovReasoner.new(HANDS, :r))
       @reasoner = reasoner
+      @stats = { me: 0, you: 0, draw: 0 }
     end
 
     def turn(opponents_hand)
       check_hand opponents_hand
       result = get_winner(opponents_hand, my_hand)
+      update_stats result
       process_hand opponents_hand
       format_output(opponents_hand, my_hand, result)
     end
 
+    def update_stats(result)
+      @stats[result] += 1
+    end
+
+    def statistics
+      "My wins/Ties/Your wins: #{@stats[:me]} / #{@stats[:draw]} / #{@stats[:you]}"
+    end
+
     def check_hand(hand)
-      raise InvalidHand unless HANDS.include? hand
+      raise InvalidHand.new(hand) unless HANDS.include?(hand)
     end
 
     def my_hand
