@@ -6,14 +6,14 @@ game = Rps::Game.new
 loop do
   begin
     print "Your turn. Choose one of [r, p, s] or q to quit: "
-    puts game.turn gets.strip.to_sym
-  rescue Rps::Game::InvalidHand => e
-    if e.message == :q
+    action = gets.strip.to_sym
+    if action == :q
       puts game.statistics
-      break
-    else
-      puts "Invalid hand!"
-      retry
+      exit
     end
+    puts game.turn(action)
+  rescue Rps::Game::InvalidHand
+    puts "Invalid hand!"
+    retry
   end
 end
