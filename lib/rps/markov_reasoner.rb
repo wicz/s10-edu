@@ -19,6 +19,7 @@ module Rps
           @matrix[i][j] = 0
         end
       end
+
       @matrix
     end
 
@@ -35,11 +36,13 @@ module Rps
     def estimate_next_events
       max = @matrix[last_event].values.max
       possibilities = @matrix[last_event].select { |k, v| v >= max }
+
       possibilities.keys
     end
 
     def check_event(event)
-      raise UnknownEvent unless @states.include? event
+      @states.include?(event) or raise UnknownEvent
     end
   end
 end
+

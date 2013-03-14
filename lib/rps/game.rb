@@ -48,6 +48,7 @@ module Rps
       when :you   then "You won!"
       else "I won!"
       end
+
       turn
     end
 
@@ -64,3 +65,4 @@ module Rps
     end
   end
 end
+

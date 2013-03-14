@@ -1,8 +1,7 @@
-require 'spec_helper'
+require "spec_helper"
 
 describe Rps::MarkovReasoner do
-
-  let(:states) { %w{ r p s }.map(&:to_sym) }
+  let(:states)   { %w{ r p s }.map(&:to_sym) }
   let(:reasoner) { Rps::MarkovReasoner.new states }
 
   describe "#new" do
@@ -50,7 +49,7 @@ describe Rps::MarkovReasoner do
   end
 
   describe "#estimate_next_events" do
-    before(:all) do
+    before do
       reasoner.matrix = {
         r: { r: 3, p: 3, s: 2 },
         p: { r: 2, p: 2, s: 1 },
@@ -76,3 +75,4 @@ describe Rps::MarkovReasoner do
     end
   end
 end
+

@@ -1,4 +1,4 @@
-require 'spec_helper'
+require "spec_helper"
 
 describe Rps::Game do
   let(:game) { Rps::Game.new }
@@ -107,3 +107,4 @@ describe Rps::Game do
     end
   end
 end
+
