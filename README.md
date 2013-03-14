@@ -1,7 +1,10 @@
 # Rock, Paper and Scissors w/ Markov Chains
 
-This is an implementation of the game Rock, Paper an Scissors using Markov
-Chains to estimate the opponent's next hand.
+Rock, Paper an Scissors using Markov Chains to estimate the opponent's
+next hand.
+
+This is my implementation for the Academic Exercise for
+Medicant Unversity's Core Skills Course 2012.
 
 ## Usage
 
@@ -28,3 +31,4 @@ Chains to estimate the opponent's next hand.
     Invalid hand!
     Your turn. Choose one of [r, p, s] or q to quit: q
     My wins/Ties/Your wins: 3 / 4 / 2
+
